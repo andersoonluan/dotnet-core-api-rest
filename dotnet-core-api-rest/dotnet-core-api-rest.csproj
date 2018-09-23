@@ -16,6 +16,10 @@
     <Folder Include="db\dataset\" />
     <Folder Include="Model\Base\" />
     <Folder Include="Repository\Generic\" />
+    <Folder Include="Data\" />
+    <Folder Include="Data\Converter\" />
+    <Folder Include="Data\Converters\" />
+    <Folder Include="Data\VO\" />
   </ItemGroup>
 
   <ItemGroup>

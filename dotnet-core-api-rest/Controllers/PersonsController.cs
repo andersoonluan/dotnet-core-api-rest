@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using dotnetcoreapirest.Business;
+using dotnetcoreapirest.Data.VO;
 using dotnetcoreapirest.Model;
 using Microsoft.AspNetCore.Mvc;
 
@@ -41,7 +42,7 @@ namespace dotnet_core_api_rest.Controllers
 
         // POST api/values
         [HttpPost]
-		public ActionResult Post([FromBody] Person person)
+		public ActionResult Post([FromBody] PersonVO person)
         {         
             if (person == null)
 				return BadRequest();
@@ -51,7 +52,7 @@ namespace dotnet_core_api_rest.Controllers
 
         // PUT api/values/5
         [HttpPut]
-		public ActionResult Put([FromBody] Person person)
+		public ActionResult Put([FromBody] PersonVO person)
         {
 			if (person == null)
                 return BadRequest();

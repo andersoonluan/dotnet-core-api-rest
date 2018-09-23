@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
+using dotnetcoreapirest.Data.Converters;
+using dotnetcoreapirest.Data.VO;
 using dotnetcoreapirest.Model;
 using dotnetcoreapirest.Model.Context;
 using dotnetcoreapirest.Repository;
@@ -12,6 +14,7 @@ namespace dotnetcoreapirest.Business.Implementations
 	public class PersonBusinessImpl : IPersonBusiness
 	{
 		private IRepository<Person> _repository;
+		private readonly PersonConverter _converter;
         
         /// <summary>
         /// Initializes a new instance of the
@@ -21,6 +24,7 @@ namespace dotnetcoreapirest.Business.Implementations
 		public PersonBusinessImpl(IRepository<Person> repository)
 		{
 			_repository = repository;
+			_converter = new PersonConverter();
 		}
 
         /// <summary>
@@ -28,10 +32,11 @@ namespace dotnetcoreapirest.Business.Implementations
         /// </summary>
         /// <returns>The create.</returns>
         /// <param name="person">Person.</param>
-		public Person Create(Person person)
+		public PersonVO Create(PersonVO person)
 		{
-			
-			return _repository.Create(person);
+			var personEntity = _converter.Parse(person);
+			personEntity = _repository.Create(personEntity);
+			return _converter.Parse(personEntity);
 		}
 
         /// <summary>
@@ -57,9 +62,9 @@ namespace dotnetcoreapirest.Business.Implementations
 		/// Finds all.
 		/// </summary>
 		/// <returns>The all.</returns>
-		public List<Person> FindAll()
+		public List<PersonVO> FindAll()
 		{
-			return _repository.FindAll();
+			return _converter.ParseList(_repository.FindAll());
 		}
 
         /// <summary>
@@ -67,9 +72,9 @@ namespace dotnetcoreapirest.Business.Implementations
         /// </summary>
         /// <returns>The by identifier.</returns>
         /// <param name="id">Identifier.</param>
-		public Person FindById(long id)
+		public PersonVO FindById(long id)
 		{
-			return _repository.FindById(id);
+			return _converter.Parse(_repository.FindById(id));
 
 		}
 
@@ -78,9 +83,11 @@ namespace dotnetcoreapirest.Business.Implementations
         /// </summary>
         /// <returns>The update.</returns>
         /// <param name="person">Person.</param>
-		public Person Update(Person person)
+		public PersonVO Update(PersonVO person)
 		{
-			return _repository.Update(person);
+			var personEntity = _converter.Parse(person);
+			personEntity = _repository.Update(personEntity);
+            return _converter.Parse(personEntity);
 		}
         
 

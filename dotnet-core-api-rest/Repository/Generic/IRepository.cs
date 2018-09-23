@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using dotnetcoreapirest.Model.Base;
 namespace dotnetcoreapirest.Repository.Generic
 {
-	public interface IRepository<T> where T : BaseEntity 
+	public interface IRepository<T> where T : class 
     {
 		T Create(T item);
         T FindById(long id);
