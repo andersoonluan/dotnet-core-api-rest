@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using dotnetcoreapirest.Model;
 
-namespace dotnetcoreapirest.Services
+namespace dotnetcoreapirest.Business
 {
-    public interface IPersonService
+    public interface IPersonBusiness
     {
 		Person Create(Person person);
 		Person FindById(long id);

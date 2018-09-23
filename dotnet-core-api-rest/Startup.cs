@@ -2,13 +2,18 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using dotnetcoreapirest.Business;
+using dotnetcoreapirest.Business.Implementations;
 using dotnetcoreapirest.Model.Context;
-using dotnetcoreapirest.Services;
-using dotnetcoreapirest.Services.Implementations;
+using dotnetcoreapirest.Repository;
+using dotnetcoreapirest.Repository.Implementations;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Routing;
+using Microsoft.AspNetCore.Mvc.Versioning;
+using Microsoft.AspNetCore.Routing;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -19,22 +24,35 @@ namespace dotnet_core_api_rest
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+		private readonly ILogger _logger;
+
+        public IConfiguration _configuration { get; }
+
+		public IHostingEnvironment _environment { get; }
+
+		public Startup(IConfiguration configuration, IHostingEnvironment environment, ILogger<Startup> logger)
         {
-            Configuration = configuration;
-
+			_configuration = configuration;
+			_environment = environment;
+			_logger = logger;
         }
-
-        public IConfiguration Configuration { get; }
+  
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-			var connection = Configuration["MySqlConnetion:MySqlConnectionString"];
-			services.AddDbContext<MySQLContext>(options => options.UseMySql(connection));
-
+			var connectionString = _configuration["MySqlConnetion:MySqlConnectionString"];
+			services.AddDbContext<MySQLContext>(options => options.UseMySql(connectionString));
+                 
+            // Compatibilty dotnet 2.1
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-			services.AddScoped<IPersonService, PersonServiceImpl>();
+
+            // Dependency Injection
+			services.AddScoped<IPersonBusiness, PersonBusinessImpl>();
+			services.AddScoped<IPersonRepository, PersonRepositoryImpl>();
+
+            // Versioning API 
+			services.AddApiVersioning(option => option.ReportApiVersions = true);
 
         }
 
