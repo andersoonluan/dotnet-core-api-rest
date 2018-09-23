@@ -19,6 +19,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Microsoft.Net.Http.Headers;
 
 namespace dotnet_core_api_rest
 {
@@ -46,6 +47,14 @@ namespace dotnet_core_api_rest
                  
             // Compatibilty dotnet 2.1
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+
+            /// Include JSON and XML Formatter
+			services.AddMvc(options =>
+			{
+				options.RespectBrowserAcceptHeader = true;
+				options.FormatterMappings.SetMediaTypeMappingForFormat("xml", MediaTypeHeaderValue.Parse("text/xml"));
+				options.FormatterMappings.SetMediaTypeMappingForFormat("json", MediaTypeHeaderValue.Parse("application/json"));
+			}).AddXmlSerializerFormatters();
 
             // Dependency Injection
 			services.AddScoped<IPersonBusiness, PersonBusinessImpl>();
