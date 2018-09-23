@@ -13,6 +13,7 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Routing;
 using Microsoft.AspNetCore.Mvc.Versioning;
+using Microsoft.AspNetCore.Rewrite;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -20,6 +21,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.Net.Http.Headers;
+using Swashbuckle.AspNetCore.Swagger;
 
 namespace dotnet_core_api_rest
 {
@@ -56,6 +58,15 @@ namespace dotnet_core_api_rest
 				options.FormatterMappings.SetMediaTypeMappingForFormat("json", MediaTypeHeaderValue.Parse("application/json"));
 			}).AddXmlSerializerFormatters();
 
+			services.AddSwaggerGen(c =>
+			{
+				c.SwaggerDoc("v1", new Info 
+				{ 
+					Title = "RESTFul API with ASP.NET Core 2.1 ", 
+					Version = "V1" 
+				});
+			});
+
             // Dependency Injection
 			services.AddScoped<IPersonBusiness, PersonBusinessImpl>();
 			services.AddScoped<IBookBusiness,BookBusinessImpl>();
@@ -79,8 +90,20 @@ namespace dotnet_core_api_rest
                 app.UseHsts();
             }
 
+			app.UseSwagger();
+
+			app.UseSwaggerUI(c =>
+			{
+				c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API v1");
+			});
+
+			var option = new RewriteOptions();
+			option.AddRedirect("^$", "swagger");
+			app.UseRewriter(option);
+
             app.UseHttpsRedirection();
             app.UseMvc();
+
         }
     }
 }
