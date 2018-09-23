@@ -5,7 +5,7 @@ namespace dotnetcoreapirest.Model
 {
     public class Person
     {
-		public long Id { get; set; }
+		public long? Id { get; set; }
 		public string Name { get; set; }
 		public string LastName { get; set; }
 		public string Country { get; set; }
@@ -15,6 +15,7 @@ namespace dotnetcoreapirest.Model
 		public int Age { get; set; }
 		public DateTime Birthday { get; set; }
 		public string Email { get; set; }
+		public DateTime CreateOn { get; set; }
 
     }
 }

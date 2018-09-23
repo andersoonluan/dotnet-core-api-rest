@@ -9,10 +9,13 @@
     <Folder Include="Model\" />
     <Folder Include="Services\" />
     <Folder Include="Services\Implementations\" />
+    <Folder Include="db\" />
+    <Folder Include="Model\Context\" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="2.1.2" />
   </ItemGroup>
 
 </Project>

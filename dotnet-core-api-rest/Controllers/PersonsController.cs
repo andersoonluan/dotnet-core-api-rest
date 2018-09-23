@@ -63,7 +63,7 @@ namespace dotnet_core_api_rest.Controllers
 		public ActionResult Delete(int id)
         {
 			_personService.Delete(id);
-			return NoContent();
+			return NotFound();
         }
     }
 }
