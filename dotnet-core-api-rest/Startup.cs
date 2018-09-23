@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using dotnetcoreapirest.Services;
+using dotnetcoreapirest.Services.Implementations;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -26,6 +28,8 @@ namespace dotnet_core_api_rest
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+			services.AddScoped<IPersonService, PersonServiceImpl>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
