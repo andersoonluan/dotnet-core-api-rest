@@ -6,7 +6,7 @@ using dotnetcoreapirest.Business;
 using dotnetcoreapirest.Business.Implementations;
 using dotnetcoreapirest.Model.Context;
 using dotnetcoreapirest.Repository;
-using dotnetcoreapirest.Repository.Implementations;
+using dotnetcoreapirest.Repository.Generic;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -49,7 +49,9 @@ namespace dotnet_core_api_rest
 
             // Dependency Injection
 			services.AddScoped<IPersonBusiness, PersonBusinessImpl>();
-			services.AddScoped<IPersonRepository, PersonRepositoryImpl>();
+			services.AddScoped<IBookBusiness,BookBusinessImpl>();
+
+			services.AddScoped(typeof (IRepository<>), typeof (GenericRepository<>));
 
             // Versioning API 
 			services.AddApiVersioning(option => option.ReportApiVersions = true);

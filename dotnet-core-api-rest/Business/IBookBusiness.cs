@@ -5,8 +5,8 @@ using dotnetcoreapirest.Repository.Generic;
 
 namespace dotnetcoreapirest.Business
 {
-	public interface IPersonBusiness : IRepository<Person>
+	public interface IBookBusiness : IRepository<Book>
     {
-		      
+		
     }
 }

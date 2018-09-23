@@ -12,9 +12,10 @@
     <Folder Include="db\" />
     <Folder Include="Model\Context\" />
     <Folder Include="Repository\" />
-    <Folder Include="Repository\Implementations\" />
     <Folder Include="db\migrations\" />
     <Folder Include="db\dataset\" />
+    <Folder Include="Model\Base\" />
+    <Folder Include="Repository\Generic\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -287,9 +288,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="Evolve.json" />
+    <Compile Remove="Repository\Implementations\PersonRepositoryImpl.cs" />
   </ItemGroup>
-  
    <Target Name="ChangeAliasesOfStrongNameAssemblies" BeforeTargets="FindReferenceAssembliesForReferences;ResolveReferences">
     <ItemGroup>
       <ReferencePath Condition="'%(FileName)' == 'MySqlConnector'">

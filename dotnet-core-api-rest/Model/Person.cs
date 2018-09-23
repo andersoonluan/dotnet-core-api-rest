@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Linq;
+using dotnetcoreapirest.Model.Base;
 
 namespace dotnetcoreapirest.Model
 {
-    public class Person
+	public class Person : BaseEntity
     {
-		public long? Id { get; set; }
 		public string Name { get; set; }
 		public string LastName { get; set; }
 		public string Country { get; set; }

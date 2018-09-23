@@ -1,47 +1,43 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
 using dotnetcoreapirest.Model;
-using dotnetcoreapirest.Model.Context;
-using dotnetcoreapirest.Repository;
 using dotnetcoreapirest.Repository.Generic;
 
 namespace dotnetcoreapirest.Business.Implementations
 {
-	public class PersonBusinessImpl : IPersonBusiness
-	{
-		private IRepository<Person> _repository;
-        
+	public class BookBusinessImpl : IBookBusiness
+    {
+		private IRepository<Book> _repository;
+
         /// <summary>
         /// Initializes a new instance of the
         /// <see cref="T:dotnetcoreapirest.Business.Implementations.PersonBusinessImpl"/> class.
         /// </summary>
         /// <param name="repository">Repository.</param>
-		public PersonBusinessImpl(IRepository<Person> repository)
-		{
-			_repository = repository;
-		}
+		public BookBusinessImpl(IRepository<Book> repository)
+        {
+            _repository = repository;
+        }
 
         /// <summary>
-        /// Create Method Person
+        /// Create the specified book.
         /// </summary>
         /// <returns>The create.</returns>
-        /// <param name="person">Person.</param>
-		public Person Create(Person person)
-		{
-			
-			return _repository.Create(person);
-		}
+        /// <param name="book">Book.</param>
+		public Book Create(Book book)
+        {
+
+            return _repository.Create(book);
+        }
 
         /// <summary>
         /// Delete the specified id.
         /// </summary>
         /// <param name="id">Identifier.</param>
-		public void Delete(long id)
-		{
-			_repository.Delete(id);
-		}
+        public void Delete(long id)
+        {
+            _repository.Delete(id);
+        }
 
         /// <summary>
         /// Exists the specified id.
@@ -57,36 +53,31 @@ namespace dotnetcoreapirest.Business.Implementations
 		/// Finds all.
 		/// </summary>
 		/// <returns>The all.</returns>
-		public List<Person> FindAll()
-		{
-			return _repository.FindAll();
-		}
+		public List<Book> FindAll()
+        {
+            return _repository.FindAll();
+        }
 
         /// <summary>
         /// Finds the by identifier.
         /// </summary>
         /// <returns>The by identifier.</returns>
         /// <param name="id">Identifier.</param>
-		public Person FindById(long id)
-		{
-			return _repository.FindById(id);
+		public Book FindById(long id)
+        {
+            return _repository.FindById(id);
 
-		}
+        }
 
         /// <summary>
-        /// Update the specified person.
+        /// Update the specified book.
         /// </summary>
         /// <returns>The update.</returns>
-        /// <param name="person">Person.</param>
-		public Person Update(Person person)
-		{
-			return _repository.Update(person);
-		}
-        
-
+        /// <param name="book">Book.</param>
+		public Book Update(Book book)
+        {
+            return _repository.Update(book);
+        }
         
 	}
-
-
-
 }
