@@ -13,13 +13,15 @@
     <Folder Include="Model\Context\" />
     <Folder Include="Repository\" />
     <Folder Include="db\migrations\" />
-    <Folder Include="db\dataset\" />
     <Folder Include="Model\Base\" />
     <Folder Include="Repository\Generic\" />
     <Folder Include="Data\" />
     <Folder Include="Data\Converter\" />
     <Folder Include="Data\Converters\" />
     <Folder Include="Data\VO\" />
+    <Folder Include="Repository\Implementations\" />
+    <Folder Include="Security\" />
+    <Folder Include="Security\Configuration\" />
   </ItemGroup>
 
   <ItemGroup>
