@@ -7,6 +7,7 @@ using dotnetcoreapirest.Business.Implementations;
 using dotnetcoreapirest.Model.Context;
 using dotnetcoreapirest.Repository;
 using dotnetcoreapirest.Repository.Generic;
+using dotnetcoreapirest.Repository.Implementations;
 using dotnetcoreapirest.Security.Configuration;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
@@ -120,8 +121,10 @@ namespace dotnet_core_api_rest
             // Dependency Injection
 			services.AddScoped<IPersonBusiness, PersonBusinessImpl>();
 			services.AddScoped<IBookBusiness,BookBusinessImpl>();
+			services.AddScoped<ILoginBusiness, LoginBusinessImpl>();
 
 			services.AddScoped(typeof (IRepository<>), typeof (GenericRepository<>));
+			services.AddScoped<ILoginRepository, LoginRepositoryImpl>();
 
             // Versioning API 
 			services.AddApiVersioning(option => option.ReportApiVersions = true);

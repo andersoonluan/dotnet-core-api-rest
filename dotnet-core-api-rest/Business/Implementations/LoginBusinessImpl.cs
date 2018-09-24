@@ -44,7 +44,7 @@ namespace dotnetcoreapirest.Business.Implementations
 			if (credentialsIsValid)
             {
                 ClaimsIdentity identity = new ClaimsIdentity(
-					new GenericIdentity(login.LoginUser, "LoginUser"),
+					new GenericIdentity(login.LoginUser, "Login"),
                         new[]
                         {
                             new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString("N")),
@@ -99,7 +99,7 @@ namespace dotnetcoreapirest.Business.Implementations
 			return new
             {
                 autenticated = false,
-                message = "Failed to autheticate"
+                message = "Failed to Authenticate!"
             };
 		}
 

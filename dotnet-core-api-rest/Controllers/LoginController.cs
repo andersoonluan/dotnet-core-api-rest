@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace dotnetcoreapirest.Controllers
 {
 	[ApiVersion("1")]
-    [Route("api/[controller]/v{version:apiVersion}")]
+	[Route("api/v{version:apiVersion}/[controller]")]
 	public class LoginController : Controller
     {
 		private ILoginBusiness _loginBusiness;
