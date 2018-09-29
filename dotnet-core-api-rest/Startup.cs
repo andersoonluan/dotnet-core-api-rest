@@ -122,6 +122,8 @@ namespace dotnet_core_api_rest
 			services.AddScoped<IPersonBusiness, PersonBusinessImpl>();
 			services.AddScoped<IBookBusiness,BookBusinessImpl>();
 			services.AddScoped<ILoginBusiness, LoginBusinessImpl>();
+			services.AddScoped<ISkillsBusiness, SkillsBusinessImpl>();
+			services.AddScoped<IInterestsBusiness, InterestsBusinessImpl>();
 
 			services.AddScoped(typeof (IRepository<>), typeof (GenericRepository<>));
 			services.AddScoped<ILoginRepository, LoginRepositoryImpl>();

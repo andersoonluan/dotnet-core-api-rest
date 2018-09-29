@@ -22,6 +22,8 @@
     <Folder Include="Repository\Implementations\" />
     <Folder Include="Security\" />
     <Folder Include="Security\Configuration\" />
+    <Folder Include="Data\Converters\" />
+    <Folder Include="Data\VO\" />
   </ItemGroup>
 
   <ItemGroup>
