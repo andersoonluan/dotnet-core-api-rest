@@ -94,10 +94,30 @@ namespace dotnetcoreapirest.Repository.Generic
 		}
 
         /// <summary>
-        /// Update the specified item.
+        /// Finds the with paged search.
         /// </summary>
-        /// <returns>The update.</returns>
-        /// <param name="item">Item.</param>
+        /// <returns>The with paged search.</returns>
+        /// <param name="query">Query.</param>
+		public List<T> FindWithPagedSearch(string query)
+		{
+			return dataset.FromSql<T>(query).ToList();
+		}
+
+        /// <summary>
+        /// Gets the count.
+        /// </summary>
+        /// <returns>The count.</returns>
+        /// <param name="query">Query.</param>
+		public int GetCount(string query)
+        {
+			return dataset.FromSql<T>(query).Count();
+        }
+
+		/// <summary>
+		/// Update the specified item.
+		/// </summary>
+		/// <returns>The update.</returns>
+		/// <param name="item">Item.</param>
 		public T Update(T item)
 		{
 			if (!Exists(item.Id)) return null;

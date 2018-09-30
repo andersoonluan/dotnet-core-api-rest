@@ -41,6 +41,20 @@ namespace dotnet_core_api_rest.Controllers
         }
        
         /// <summary>
+        /// Gets the paged search.
+        /// </summary>
+        /// <returns>The paged search.</returns>
+        /// <param name="name">Name.</param>
+        /// <param name="sortDirection">Sort direction.</param>
+        /// <param name="pageSize">Page size.</param>
+        /// <param name="page">Page.</param>
+		[HttpGet("search/freelancers/{sortDirection}/{pageSize}/{page}")]
+        public ActionResult GetPagedSearch([FromQuery] string name, string sortDirection, int pageSize, int page)
+        {
+			return new OkObjectResult(_personBusiness.FindWithPagedSearch(name, sortDirection, pageSize, page));
+        }
+
+        /// <summary>
         /// Gets the by country.
         /// </summary>
         /// <returns>The by country.</returns>

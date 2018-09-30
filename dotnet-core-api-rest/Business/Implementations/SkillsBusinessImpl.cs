@@ -67,12 +67,22 @@ namespace dotnetcoreapirest.Business.Implementations
 		{
 			return _repository.FindById(id);
 		}
-       
-        /// <summary>
-        /// Update the specified item.
-        /// </summary>
-        /// <returns>The update.</returns>
-        /// <param name="item">Item.</param>
+
+		public List<Skills> FindWithPagedSearch(string query)
+		{
+			throw new NotImplementedException();
+		}
+
+		public int GetCount(string query)
+		{
+			throw new NotImplementedException();
+		}
+
+		/// <summary>
+		/// Update the specified item.
+		/// </summary>
+		/// <returns>The update.</returns>
+		/// <param name="item">Item.</param>
 		public Skills Update(Skills item)
 		{
 			return _repository.Update(item);

@@ -6,6 +6,7 @@ using dotnetcoreapirest.Model;
 using dotnetcoreapirest.Model.Context;
 using dotnetcoreapirest.Repository;
 using dotnetcoreapirest.Repository.Generic;
+using Tapioca.HATEOAS.Utils;
 
 namespace dotnetcoreapirest.Business.Implementations
 {
@@ -103,8 +104,64 @@ namespace dotnetcoreapirest.Business.Implementations
 			return _repository.Update(person);
 		}
         
+        /// <summary>
+        /// Finds the with paged search.
+        /// </summary>
+        /// <returns>The with paged search.</returns>
+        /// <param name="name">Name.</param>
+        /// <param name="sortDirection">Sort direction.</param>
+        /// <param name="pageSize">Page size.</param>
+        /// <param name="page">Page.</param>
+		public PagedSearchDTO<Person> FindWithPagedSearch(string name, string sortDirection, int pageSize, int page)
+		{
+			string query = @"select * from persons p where 1 = 1 ";
+			if(!string.IsNullOrEmpty(name))
+			{
+				query += $" and p.name like '%{name}%' ";
+			}
+			query += $" order by p.name {sortDirection} limit {pageSize} offset {page}";                 
+            
 
-        
+			string countQuery = @"select count(*) from persons p where 1 = 1 ";
+            if (!string.IsNullOrEmpty(name))
+            {
+				countQuery += $" and p.name like '%{name}%' ";
+            }
+
+
+			var persons = _repository.FindWithPagedSearch(query);
+			int totalResults = _repository.GetCount(countQuery);
+
+			return new PagedSearchDTO<Person>
+			{
+				CurrentPage = page,
+				List = persons,
+				PageSize = pageSize,
+				SortDirections = sortDirection,
+				TotalResults = totalResults
+			};
+		}
+
+
+        /// <summary>
+        /// Gets the count.
+        /// </summary>
+        /// <returns>The count.</returns>
+        /// <param name="query">Query.</param>
+		public int GetCount(string query)
+		{
+			return _repository.GetCount(query);
+		}
+
+        /// <summary>
+        /// Finds the with paged search.
+        /// </summary>
+        /// <returns>The with paged search.</returns>
+        /// <param name="query">Query.</param>
+		public List<Person> FindWithPagedSearch(string query)
+		{
+			return _repository.FindWithPagedSearch(query);
+		}
 	}
 
 

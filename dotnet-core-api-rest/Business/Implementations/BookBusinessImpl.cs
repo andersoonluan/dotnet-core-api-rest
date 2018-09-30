@@ -69,11 +69,21 @@ namespace dotnetcoreapirest.Business.Implementations
 
         }
 
-        /// <summary>
-        /// Update the specified book.
-        /// </summary>
-        /// <returns>The update.</returns>
-        /// <param name="book">Book.</param>
+		public List<Book> FindWithPagedSearch(string query)
+		{
+			throw new NotImplementedException();
+		}
+
+		public int GetCount(string query)
+		{
+			throw new NotImplementedException();
+		}
+
+		/// <summary>
+		/// Update the specified book.
+		/// </summary>
+		/// <returns>The update.</returns>
+		/// <param name="book">Book.</param>
 		public Book Update(Book book)
         {
             return _repository.Update(book);
