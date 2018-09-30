@@ -114,6 +114,7 @@ namespace dotnetcoreapirest.Business.Implementations
         /// <param name="page">Page.</param>
 		public PagedSearchDTO<Person> FindWithPagedSearch(string name, string sortDirection, int pageSize, int page)
 		{
+			page = page > 0 ? page - 1 : 0;
 			string query = @"select * from persons p where 1 = 1 ";
 			if(!string.IsNullOrEmpty(name))
 			{
@@ -134,7 +135,7 @@ namespace dotnetcoreapirest.Business.Implementations
 
 			return new PagedSearchDTO<Person>
 			{
-				CurrentPage = page,
+				CurrentPage = page + 1,
 				List = persons,
 				PageSize = pageSize,
 				SortDirections = sortDirection,
