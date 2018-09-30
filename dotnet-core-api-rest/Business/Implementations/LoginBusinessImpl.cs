@@ -118,7 +118,7 @@ namespace dotnetcoreapirest.Business.Implementations
                 created = createDate.ToString("yyyy-MM-dd HH:mm:ss"),
                 expiration = expirationDate.ToString("yyyy-MM-dd HH:mm:ss"),
                 accessToken = token,
-                message = "OK"
+                message = "User authenticate success! "
             };
 		}
 	}

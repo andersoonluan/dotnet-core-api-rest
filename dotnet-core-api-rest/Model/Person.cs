@@ -30,9 +30,7 @@ namespace dotnetcoreapirest.Model
 		public string Gender { get; set; }
 
 		public int Age { get; set; }
-
-		[Required]
-        [StringLength(100)]
+        
 		public DateTime Birthday { get; set; }
 
 		[Required]

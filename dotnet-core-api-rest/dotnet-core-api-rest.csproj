@@ -15,15 +15,9 @@
     <Folder Include="db\migrations\" />
     <Folder Include="Model\Base\" />
     <Folder Include="Repository\Generic\" />
-    <Folder Include="Data\" />
-    <Folder Include="Data\Converter\" />
-    <Folder Include="Data\Converters\" />
-    <Folder Include="Data\VO\" />
     <Folder Include="Repository\Implementations\" />
     <Folder Include="Security\" />
     <Folder Include="Security\Configuration\" />
-    <Folder Include="Data\Converters\" />
-    <Folder Include="Data\VO\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -297,9 +291,6 @@
     </Reference>
   </ItemGroup>
 
-  <ItemGroup>
-    <Compile Remove="Repository\Implementations\PersonRepositoryImpl.cs" />
-  </ItemGroup>
    <Target Name="ChangeAliasesOfStrongNameAssemblies" BeforeTargets="FindReferenceAssembliesForReferences;ResolveReferences">
     <ItemGroup>
       <ReferencePath Condition="'%(FileName)' == 'MySqlConnector'">

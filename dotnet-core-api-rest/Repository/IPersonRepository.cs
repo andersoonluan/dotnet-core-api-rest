@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using dotnetcoreapirest.Model;
 using dotnetcoreapirest.Repository.Generic;
 
-namespace dotnetcoreapirest.Business
+namespace dotnetcoreapirest.Repository
 {
-	public interface IPersonBusiness : IRepository<Person>
+	public interface IPersonRepository : IRepository<Person>
     {
 		List<Person> FindByName(string firstName, string lastName);
 		List<Person> FindByCountry(string country);

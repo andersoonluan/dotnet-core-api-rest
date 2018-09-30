@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
-using dotnetcoreapirest.Data.Converters;
-using dotnetcoreapirest.Data.VO;
 using dotnetcoreapirest.Model;
 using dotnetcoreapirest.Model.Context;
 using dotnetcoreapirest.Repository;
@@ -13,18 +11,16 @@ namespace dotnetcoreapirest.Business.Implementations
 {
 	public class PersonBusinessImpl : IPersonBusiness
 	{
-		private IRepository<Person> _repository;
-		private readonly PersonConverter _converter;
+		private IPersonRepository _repository;
         
         /// <summary>
         /// Initializes a new instance of the
         /// <see cref="T:dotnetcoreapirest.Business.Implementations.PersonBusinessImpl"/> class.
         /// </summary>
         /// <param name="repository">Repository.</param>
-		public PersonBusinessImpl(IRepository<Person> repository)
+		public PersonBusinessImpl(IPersonRepository repository)
 		{
 			_repository = repository;
-			_converter = new PersonConverter();
 		}
 
         /// <summary>
@@ -32,11 +28,9 @@ namespace dotnetcoreapirest.Business.Implementations
         /// </summary>
         /// <returns>The create.</returns>
         /// <param name="person">Person.</param>
-		public PersonVO Create(PersonVO person)
+		public Person Create(Person person)
 		{
-			var personEntity = _converter.Parse(person);
-			personEntity = _repository.Create(personEntity);
-			return _converter.Parse(personEntity);
+			return _repository.Create(person);
 		}
 
         /// <summary>
@@ -62,9 +56,9 @@ namespace dotnetcoreapirest.Business.Implementations
 		/// Finds all.
 		/// </summary>
 		/// <returns>The all.</returns>
-		public List<PersonVO> FindAll()
+		public List<Person> FindAll()
 		{
-			return _converter.ParseList(_repository.FindAll());
+			return _repository.FindAll();
 		}
 
         /// <summary>
@@ -72,22 +66,41 @@ namespace dotnetcoreapirest.Business.Implementations
         /// </summary>
         /// <returns>The by identifier.</returns>
         /// <param name="id">Identifier.</param>
-		public PersonVO FindById(long id)
+		public Person FindById(long id)
 		{
-			return _converter.Parse(_repository.FindById(id));
+			return _repository.FindById(id);
 
 		}
 
         /// <summary>
-        /// Update the specified person.
+        /// Finds the name of the by.
         /// </summary>
-        /// <returns>The update.</returns>
-        /// <param name="person">Person.</param>
-		public PersonVO Update(PersonVO person)
+        /// <returns>The by name.</returns>
+        /// <param name="firstName">First name.</param>
+        /// <param name="lastName">Last name.</param>
+		public List<Person> FindByName(string firstName, string lastName)
 		{
-			var personEntity = _converter.Parse(person);
-			personEntity = _repository.Update(personEntity);
-            return _converter.Parse(personEntity);
+			return _repository.FindByName(firstName, lastName);
+		}
+
+        /// <summary>
+        /// Finds the by country.
+        /// </summary>
+        /// <returns>The by country.</returns>
+        /// <param name="country">Country.</param>
+		public List<Person> FindByCountry(string country)
+        {
+			return _repository.FindByCountry(country);
+        }
+
+		/// <summary>
+		/// Update the specified person.
+		/// </summary>
+		/// <returns>The update.</returns>
+		/// <param name="person">Person.</param>
+		public Person Update(Person person)
+		{
+			return _repository.Update(person);
 		}
         
 

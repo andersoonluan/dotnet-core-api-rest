@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using dotnetcoreapirest.Business;
-using dotnetcoreapirest.Data.VO;
 using dotnetcoreapirest.Model;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -24,10 +23,32 @@ namespace dotnet_core_api_rest.Controllers
 
         // GET api/values
         [HttpGet]
-        [Authorize("Bearer")]
         public ActionResult Get()
         {
 			return Ok(_personBusiness.FindAll());
+        }
+
+        /// <summary>
+        /// Gets the name of the by.
+        /// </summary>
+        /// <returns>The by name.</returns>
+        /// <param name="firstName">First name.</param>
+        /// <param name="lastName">Last name.</param>
+        [HttpGet("freelancer")]
+		public ActionResult GetByName([FromQuery] string firstName, string lastName)
+        {
+			return new OkObjectResult(_personBusiness.FindByName(firstName, lastName));
+        }
+       
+        /// <summary>
+        /// Gets the by country.
+        /// </summary>
+        /// <returns>The by country.</returns>
+        /// <param name="country">Country.</param>
+		[HttpGet("find-country")]
+        public ActionResult GetByCountry([FromQuery] string country)
+        {
+			return new OkObjectResult(_personBusiness.FindByCountry(country));
         }
 
         // GET api/values/5
@@ -46,7 +67,7 @@ namespace dotnet_core_api_rest.Controllers
         // POST api/values
         [HttpPost]
 		[Authorize("Bearer")]
-		public ActionResult Post([FromBody] PersonVO person)
+		public ActionResult Post([FromBody] Person person)
         {         
             if (person == null)
 				return BadRequest();
@@ -57,7 +78,7 @@ namespace dotnet_core_api_rest.Controllers
         // PUT api/values/5
         [HttpPut]
 		[Authorize("Bearer")]
-		public ActionResult Put([FromBody] PersonVO person)
+		public ActionResult Put([FromBody] Person person)
         {
 			if (person == null)
                 return BadRequest();

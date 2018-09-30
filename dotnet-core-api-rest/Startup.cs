@@ -127,6 +127,7 @@ namespace dotnet_core_api_rest
 
 			services.AddScoped(typeof (IRepository<>), typeof (GenericRepository<>));
 			services.AddScoped<ILoginRepository, LoginRepositoryImpl>();
+			services.AddScoped<IPersonRepository, PersonRepositoryImpl>();
 
             // Versioning API 
 			services.AddApiVersioning(option => option.ReportApiVersions = true);
