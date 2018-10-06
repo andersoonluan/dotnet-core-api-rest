@@ -36,7 +36,7 @@ Edit file appsettings.json, set your configuration keys.
 
 Anderson Rodrigues – [@andersoonluan](https://github.com/andersoonluan) – andersoonluan@gmail.com
 
-Distributed under the XYZ license. See ``LICENSE`` for more information.
+See ``LICENSE`` for more information.
 
 
 <!-- Markdown link & img dfn's -->
