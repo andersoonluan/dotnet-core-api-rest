@@ -4,6 +4,7 @@ using dotnetcoreapirest.Model.Base;
 
 namespace dotnetcoreapirest.Model
 {
+	[Table("Skills")]
 	public class Skills : BaseEntity
     {
 		[Required]

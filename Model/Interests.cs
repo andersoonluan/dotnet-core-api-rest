@@ -1,9 +1,11 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using dotnetcoreapirest.Model.Base;
 
 namespace dotnetcoreapirest.Model
 {
+	[Table("interests")]
 	public class Interests : BaseEntity
     {
 		[Required]

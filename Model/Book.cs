@@ -5,6 +5,7 @@ using dotnetcoreapirest.Model.Base;
 
 namespace dotnetcoreapirest.Model
 {
+	[Table("books")]
 	public class Book : BaseEntity
     {
 		public string Title { get; set; }
